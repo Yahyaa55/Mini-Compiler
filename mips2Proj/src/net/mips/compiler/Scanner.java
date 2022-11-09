@@ -191,7 +191,7 @@ public class Scanner {
 	}
 	
 	public static void main(String args[]) throws IOException,ErreurCompilation{
-		Scanner scan = new Scanner("C:\\Users\\21267\\eclipse-workspace\\mips2Proj\\bin\\net\\test11.p");
+		Scanner scan = new Scanner("C:\\Users\\yahya\\git\\test11.p");
 		scan.initMotsCles();
 		scan.LIRE_CAR();
 		while(scan.getCarCour()!=EOF) {

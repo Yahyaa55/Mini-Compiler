@@ -21,7 +21,7 @@ public enum CodesErr {
 	PARD_ERR("Symbole ) attendu !"),
 	VIR_ERR("Symbole , attendu !"),
 	PNT_ERR("Symbole . attendu !"),
-	AFFEC_ERR("Symbole = attendu !"),
+	AFFEC_ERR("Symbole := attendu !"),
 	BEGIN_ERR("Mot clé BEGIN attendu !"),
 	END_ERR("Mot clé END attendu !"),
 	IF_ERR("Mot clé IF attendu !"),
