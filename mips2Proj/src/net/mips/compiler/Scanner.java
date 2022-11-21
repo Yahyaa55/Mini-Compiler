@@ -88,7 +88,7 @@ public class Scanner {
 		do {
 			symb_cour.setName(symb_cour.getName()+carCour);
 			LIRE_CAR();
-		}while(Character.isLetter(carCour));
+		}while(Character.isLetterOrDigit(carCour));
 		Codage_Lex();
 	}
 	
@@ -103,52 +103,64 @@ public class Scanner {
 		else
 			switch(carCour) {
 			case '+':
+				symb_cour.setName("+");
 				symb_cour.setToken(Tokens.PLUS_TOKEN);
 				LIRE_CAR();
 				break;
 			case '-':
+				symb_cour.setName("-");
 				symb_cour.setToken(Tokens.MOINS_TOKEN);
 				LIRE_CAR();
 				break;
 			case '*':
+				symb_cour.setName("*");
 				symb_cour.setToken(Tokens.MUL_TOKEN);
 				LIRE_CAR();
 				break;
 			case '/':
+				symb_cour.setName("/");
 				symb_cour.setToken(Tokens.DIV_TOKEN);
 				LIRE_CAR();
 				break;
 			case '(':
+				symb_cour.setName("(");
 				symb_cour.setToken(Tokens.PARG_TOKEN);
 				LIRE_CAR();
 				break;
 			case ')':
+				symb_cour.setName(")");
 				symb_cour.setToken(Tokens.PARD_TOKEN);
 				LIRE_CAR();
 				break;
 			case '.':
+				symb_cour.setName(".");
 				symb_cour.setToken(Tokens.PNT_TOKEN);
 				LIRE_CAR();
 				break;
 			case ',':
+				symb_cour.setName(",");
 				symb_cour.setToken(Tokens.VIR_TOKEN);
 				LIRE_CAR();
 				break;
 			case ';':
+				symb_cour.setName(";");
 				symb_cour.setToken(Tokens.PVIR_TOKEN);
 				LIRE_CAR();
 				break;
 			case '=':
+				symb_cour.setName("=");
 				symb_cour.setToken(Tokens.EG_TOKEN);
 				LIRE_CAR();
 				break;
 			case EOF:
+				symb_cour.setName("EOF");
 				symb_cour.setToken(Tokens.EOF_TOKEN);
 				break;
 			case ':':
 				LIRE_CAR();
 				switch(carCour) {
 				case '=':
+					symb_cour.setName(":=");
 					symb_cour.setToken(Tokens.AFFEC_TOKEN);
 					LIRE_CAR();
 					break;
@@ -161,10 +173,12 @@ public class Scanner {
 				LIRE_CAR();
 				switch(carCour) {
 				case '=':
+					symb_cour.setName(">=");
 					symb_cour.setToken(Tokens.SUPEG_TOKEN);
 					LIRE_CAR();
 					break;
 				default:
+					symb_cour.setName(">");
 					symb_cour.setToken(Tokens.SUP_TOKEN);
 					break;
 				}
@@ -173,14 +187,17 @@ public class Scanner {
 				LIRE_CAR();
 				switch(carCour) {
 				case '=':
+					symb_cour.setName("<=");
 					symb_cour.setToken(Tokens.INFEG_TOKEN);
 					LIRE_CAR();
 					break;
 				case '>':
+					symb_cour.setName("<>");
 					symb_cour.setToken(Tokens.DIFF_TOKEN);
 					LIRE_CAR();
 					break;
 				default:
+					symb_cour.setName("<");
 					symb_cour.setToken(Tokens.INF_TOKEN);
 					break;
 				}
@@ -191,7 +208,7 @@ public class Scanner {
 	}
 	
 	public static void main(String args[]) throws IOException,ErreurCompilation{
-		Scanner scan = new Scanner("C:\\Users\\yahya\\git\\test11.p");
+		Scanner scan = new Scanner("Test22.p");
 		scan.initMotsCles();
 		scan.LIRE_CAR();
 		while(scan.getCarCour()!=EOF) {

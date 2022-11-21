@@ -30,6 +30,7 @@ public enum CodesErr {
 	DO_ERR("Mot clé DO attendu !"),
 	WRITE_ERR("Mot clé WRITE attendu !"),
 	READ_ERR("Mot clé READ attendu !"),
+	EOF_ERR("END OF FILE"),
 	CONST_ERR("Mot clé CONST attendu !"),
 	VAR_ERR("Mot clé VAR attendu !");
 	private String msg;

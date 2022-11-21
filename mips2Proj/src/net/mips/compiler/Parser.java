@@ -17,34 +17,40 @@ public class Parser {
 		scan = new Scanner(file_name);
 	}
 	public void TEST_ACCEPT(Tokens t,CodesErr c) throws IOException, ErreurCompilation {
-		if(scan.symb_cour.token == t)
-			scan.SYMB_SUIV();
+		if(scan.symb_cour.token == t) {
+			
+			scan.SYMB_SUIV(); 
+			System.out.println(scan.symb_cour.getName());                   //    <=  Here
+		}
 		else
 			throw new ErreurSyntaxique(c);
 	}
 	
 	public void consts() throws IOException, ErreurCompilation {
+		TEST_ACCEPT(Tokens.CONST_TOKEN, CodesErr.CONST_ERR);
 		do {
-			TEST_ACCEPT(Tokens.CONST_TOKEN, CodesErr.CONST_ERR);
 			TEST_ACCEPT(Tokens.ID_TOKEN, CodesErr.ID_ERR);
-			TEST_ACCEPT(Tokens.AFFEC_TOKEN, CodesErr.AFFEC_ERR);
+			TEST_ACCEPT(Tokens.EG_TOKEN, CodesErr.EG_ERR);
 			TEST_ACCEPT(Tokens.NUM_TOKEN, CodesErr.NUM_ERR);
-			TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
 		}while(scan.symb_cour.token==Tokens.ID_TOKEN);
+		TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
 	}
 	
 	public void vars() throws IOException, ErreurCompilation {
+		TEST_ACCEPT(Tokens.VAR_TOKEN, CodesErr.VAR_ERR);
 		do {
 			if(scan.symb_cour.token==Tokens.VIR_TOKEN)
-				TEST_ACCEPT(Tokens.VIR_TOKEN, CodesErr.VIR_ERR);
-			TEST_ACCEPT(Tokens.VAR_TOKEN, CodesErr.VAR_ERR);
-			TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
+			TEST_ACCEPT(Tokens.VIR_TOKEN, CodesErr.VIR_ERR);
+			TEST_ACCEPT(Tokens.ID_TOKEN, CodesErr.ID_ERR);
 		}while(scan.symb_cour.token==Tokens.VIR_TOKEN);
+		TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
 	}
 	
 	public void insts() throws IOException, ErreurCompilation {
 		TEST_ACCEPT(Tokens.BEGIN_TOKEN, CodesErr.BEGIN_ERR);
-		//inst();
+		do {
+			inst();
+		}while(scan.symb_cour.token!=Tokens.END_TOKEN);
 		TEST_ACCEPT(Tokens.END_TOKEN, CodesErr.END_ERR);
 	}
 	
@@ -52,12 +58,13 @@ public class Parser {
 		consts();
 		vars();
 		insts();
-	}
+	} 
 	
 	public void AFFEC() throws IOException, ErreurCompilation {
 		TEST_ACCEPT(Tokens.ID_TOKEN, CodesErr.ID_ERR);
 		TEST_ACCEPT(Tokens.AFFEC_TOKEN, CodesErr.AFFEC_ERR);
 		expr();
+		TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
 	}
 	
 	public void fact() throws IOException, ErreurCompilation {
@@ -109,14 +116,14 @@ public class Parser {
 		TEST_ACCEPT(Tokens.WHILE_TOKEN, CodesErr.WHILE_ERR);
 		cond();
 		TEST_ACCEPT(Tokens.DO_TOKEN, CodesErr.DO_ERR);
-		//inst();
+		inst();
 	}
 	
 	public void SI() throws IOException, ErreurCompilation {
 		TEST_ACCEPT(Tokens.IF_TOKEN, CodesErr.IF_ERR);
 		cond();
 		TEST_ACCEPT(Tokens.THEN_TOKEN, CodesErr.THEN_ERR);
-		//inst();
+		inst();
 	}
 	public void inst() throws IOException, ErreurCompilation {
 		switch (scan.symb_cour.token) {
@@ -219,15 +226,19 @@ public class Parser {
 	}
 	
 	public static void main(String args[]) throws IOException,ErreurCompilation{
-		Parser par = new Parser("C:\\Users\\yahya\\git\\test11.p");
+		Parser par = new Parser("Test22.p");
 		par.scan.initMotsCles();
 		par.scan.LIRE_CAR();
-		while(par.scan.getCarCour()!=Scanner.EOF) {
-			par.scan.SYMB_SUIV();
-			System.out.println(par.scan.getSymb_cour().getToken());
-		}
-		if(par.scan.getCarCour()==Scanner.EOF)
-			par.scan.SYMB_SUIV();
-			System.out.println(par.scan.getSymb_cour().getToken());
-	}
+		par.scan.SYMB_SUIV();
+		par.program();
+		
+		if (par.scan.symb_cour.token==Tokens.EOF_TOKEN)
+			System.out.println("analyse bien réussie");
+		else
+			throw new ErreurSyntaxique(CodesErr.EOF_ERR);
+		
+			
+		
+		
+	}		
 }

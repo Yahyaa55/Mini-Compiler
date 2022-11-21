@@ -3,8 +3,8 @@ package net.mips.compiler;
 public class Symboles {
 	Tokens token;
 	public String name;
+	
 	public Symboles(Tokens token, String name) {
-		super();
 		this.token = token;
 		this.name = name;
 	}
