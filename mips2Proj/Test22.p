@@ -1,7 +1,6 @@
-program test22;
-const ta=21;
+program test;
+const ta=21; to=21;
 var x,y;
 Begin
-x:=ta;
-read(y);
+    Write(x);
 end.

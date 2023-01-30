@@ -11,7 +11,7 @@ public enum CodesErr {
 	MOINS_ERR("Symbole - attendu !"),
 	MUL_ERR("Symbole * attendu !"),
 	DIV_ERR("Symbole / attendu !"),
-	EG_ERR("Symbole == attendu !"),
+	EG_ERR("Symbole = attendu !"),
 	DIFF_ERR("Symbole != attendu !"),
 	INF_ERR("Symbole < attendu !"),
 	SUP_ERR("Symbole > attendu !"),
@@ -32,7 +32,15 @@ public enum CodesErr {
 	READ_ERR("Mot clé READ attendu !"),
 	EOF_ERR("END OF FILE"),
 	CONST_ERR("Mot clé CONST attendu !"),
-	VAR_ERR("Mot clé VAR attendu !");
+	VAR_ERR("Mot clé VAR attendu !"),
+	FACT_ERR("erreur de factorisation"),
+		
+			//erreurs sementique
+	
+	CONST_MODIF_ERR("une constante ne peut pas changer de valeur"),
+	NON_DECL_ERR("element non declaré"),
+	DBL_DECL_ERR("element deja declaré"),
+	PROG_USE_ERR("id reservé au nom du prohramme");
 	private String msg;
 
 	private CodesErr(String msg) {

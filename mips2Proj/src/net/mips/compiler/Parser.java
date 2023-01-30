@@ -18,9 +18,9 @@ public class Parser {
 	}
 	public void TEST_ACCEPT(Tokens t,CodesErr c) throws IOException, ErreurCompilation {
 		if(scan.symb_cour.token == t) {
-			
+			System.out.println(scan.symb_cour.getToken() + " : " + scan.symb_cour.getName()); 
 			scan.SYMB_SUIV(); 
-			System.out.println(scan.symb_cour.getName());                   //    <=  Here
+			                  //    <=  Here
 		}
 		else
 			throw new ErreurSyntaxique(c);
@@ -32,8 +32,8 @@ public class Parser {
 			TEST_ACCEPT(Tokens.ID_TOKEN, CodesErr.ID_ERR);
 			TEST_ACCEPT(Tokens.EG_TOKEN, CodesErr.EG_ERR);
 			TEST_ACCEPT(Tokens.NUM_TOKEN, CodesErr.NUM_ERR);
+			TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
 		}while(scan.symb_cour.token==Tokens.ID_TOKEN);
-		TEST_ACCEPT(Tokens.PVIR_TOKEN, CodesErr.PVIR_ERR);
 	}
 	
 	public void vars() throws IOException, ErreurCompilation {
@@ -61,6 +61,7 @@ public class Parser {
 	} 
 	
 	public void AFFEC() throws IOException, ErreurCompilation {
+		System.out.println("i am in affec parser");
 		TEST_ACCEPT(Tokens.ID_TOKEN, CodesErr.ID_ERR);
 		TEST_ACCEPT(Tokens.AFFEC_TOKEN, CodesErr.AFFEC_ERR);
 		expr();
@@ -237,7 +238,7 @@ public class Parser {
 		else
 			throw new ErreurSyntaxique(CodesErr.EOF_ERR);
 		
-			
+		
 		
 		
 	}		

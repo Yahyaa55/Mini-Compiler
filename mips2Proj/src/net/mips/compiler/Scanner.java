@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Scanner {
-	public ArrayList<Symboles> motsCles;
+	ArrayList<Symboles> motsCles;
 	public Symboles symb_cour;
 	public char carCour;
 	public FileReader fluxSour;

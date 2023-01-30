@@ -3,6 +3,7 @@ package net.mips.compiler;
 public class Symboles {
 	Tokens token;
 	public String name;
+	ClassIdf classe;
 	
 	public Symboles(Tokens token, String name) {
 		this.token = token;
@@ -23,4 +24,11 @@ public class Symboles {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public ClassIdf getClasse() {
+		return classe;
+	}
+	public void setClasse(ClassIdf classe) {
+		this.classe = classe;
+	}
+	
 }
